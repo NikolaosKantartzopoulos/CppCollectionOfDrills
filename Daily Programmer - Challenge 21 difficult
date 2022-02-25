@@ -1,0 +1,64 @@
+// https://www.reddit.com/r/dailyprogrammer/comments/qp4jv/392012_challenge_21_difficult/
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+#include <vector>
+#include <string>
+
+int main()
+{
+	std::ifstream ifs("dat.txt");
+	std::vector <std::string> v;
+
+	while (ifs)
+	{
+		std::string line,first_part,last_part, colon;
+		std::stringstream ss1;
+		getline(ifs, line);
+		ss1 << line;
+		ss1 >> first_part >> colon >> last_part;
+		bool fp_exists = false;
+		bool lp_exists = false;
+
+		for (std::string s : v)
+		{
+			if (s == first_part) fp_exists = true;
+			if (s == last_part)  lp_exists = true;
+		}
+
+		if (first_part == "" || last_part == "") break;
+
+		if (fp_exists && !lp_exists)
+		{
+			for (int i{ 0 }; i < v.size(); i++)
+			{
+				if (v.at(i) == first_part)
+				{
+					v.insert(v.begin()+(i+1), last_part);
+				}
+			}
+		}
+		if (!fp_exists && lp_exists)
+		{
+			for (int i{ 0 }; i < v.size(); i++)
+			{
+				if (v.at(i) == last_part)
+				{
+					v.insert(v.begin()+(i), first_part);
+					i++;
+				}
+			}
+		}
+		if (!fp_exists && !lp_exists)
+		{
+			v.push_back(first_part);
+			v.push_back(last_part);
+		}
+
+	}
+
+
+	std::cout << "check";
+}
