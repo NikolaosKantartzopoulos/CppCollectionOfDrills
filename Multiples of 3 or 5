@@ -1,0 +1,30 @@
+//https://www.codewars.com/kata/514b92a657cdc65150000006/train/cpp
+
+#include <iostream>
+
+#include <vector>
+
+int solution(int number)
+{
+    number--;
+    std::vector <int> myv;
+    do {
+        if (number % 3 == 0 || number % 5 == 0)
+        {
+            myv.push_back(number);
+        }
+        number--;
+    } while (number > 0);
+
+    int sum{};
+    for (int c : myv)
+    {
+        sum += c;
+    }
+
+    return sum;
+}
+int main()
+{
+    std::cout << solution(10);
+}
