@@ -1,0 +1,45 @@
+//https://www.codewars.com/kata/554b4ac871d6813a03000035/train/cpp
+
+#include <iostream>
+#include <sstream>
+
+#include <vector>
+#include <string>
+
+std::string highAndLow(const std::string& numbers) {
+	std::vector <int> myv;
+	std::stringstream ss1;
+	ss1 << numbers;
+	std::string s, _ret;
+	while (ss1 >> s)
+	{
+		int a = std::stoi(s);
+		myv.push_back(a);
+	}
+	int low{}, high{};
+
+	for (int k{ 0 }; k < myv.size(); k++)
+	{
+		bool is_low = false;
+		bool is_high = false;
+		for (int l{ 0 }; l < myv.size(); l++)
+		{
+			if (myv[k] < myv[l]) is_low = true;
+			if (myv[k] > myv[l]) is_high = true;
+		}
+		if (is_low) low = myv[k];
+		if (is_high) high = myv[k];	
+	}
+	_ret = std::to_string(high) + " " + std::to_string(low);
+	return _ret;
+
+}
+
+
+
+int main()
+{
+	std:: cout << highAndLow("1 2 -3 6 -7");
+
+
+}
