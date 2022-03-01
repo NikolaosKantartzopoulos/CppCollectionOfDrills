@@ -20,26 +20,21 @@ std::string highAndLow(const std::string& numbers) {
 
 	for (int k{ 0 }; k < myv.size(); k++)
 	{
-		bool is_low = false;
-		bool is_high = false;
+		bool is_low = true;
+		bool is_high = true;
 		for (int l{ 0 }; l < myv.size(); l++)
 		{
-			if (myv[k] < myv[l]) is_low = true;
-			if (myv[k] > myv[l]) is_high = true;
+			if (myv[k] < myv[l]) is_high = false;
+			if (myv[k] > myv[l]) is_low = false;
 		}
 		if (is_low) low = myv[k];
 		if (is_high) high = myv[k];	
 	}
 	_ret = std::to_string(high) + " " + std::to_string(low);
 	return _ret;
-
 }
-
-
 
 int main()
 {
-	std:: cout << highAndLow("1 2 -3 6 -7");
-
-
+	std:: cout << highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4");
 }
